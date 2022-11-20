@@ -62,7 +62,8 @@ def save_frames_to_file(frames: list, file_name: str, timer: Timer):
 
 
 def plot_frames(frames, col_limit=3):
-    fig, axes = plt.subplots(round(len(frames)/col_limit), col_limit, figsize=(15, 10))
+    rows, cols = round(len(frames)/col_limit), col_limit
+    fig, axes = plt.subplots(nrows=rows, ncols=cols, figsize=(5 * cols, 5 * rows))
     rows, cols = axes.shape
     for row in range(rows):
         for col in range(cols):
