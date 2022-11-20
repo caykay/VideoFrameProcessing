@@ -1,9 +1,10 @@
 # credit from https://techtutorialsx.com/2021/04/29/python-opencv-splitting-video-frames/amp/
 import cv2
 from helper import Timer
+from skimage.metrics import structural_similarity as ssim
 
 timer = Timer()
-frameId = 0
+frame_id = 0
 images = []
 
 capture = cv2.VideoCapture('sampleClips/video.mp4')
@@ -13,8 +14,8 @@ while True:
     if not success:
         break
 
-    images.append((frameId,frame))
-    frameId += 1
+    images.append((frame_id, frame))
+    frame_id += 1
     # TODO: future implementations for frame processing
 
 # print(f"Getting frames: Elapsed time {timer.elapsedTime()}")
@@ -26,4 +27,8 @@ while True:
 capture.release()
 # if __name__ == '__main__':
 #     pass
+
+
+def remove_dupe_frames(frames, max_sim = 0.95):
+    """Remove duplicate frames among the generated frames"""
 
